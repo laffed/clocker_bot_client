@@ -1,10 +1,10 @@
 import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {View, StyleSheet, Image, StatusBar, Text, TouchableOpacity, ColorSchemeName} from 'react-native';
-import {useOvermind} from '../overmind';
+import {useOvermind} from '../state';
 
 export default function Navigation() {
-  const GlobalState = useOvermind().state.Example;
+  const GlobalState = useOvermind().state.Clock;
 
   return (
     <NavigationContainer>
