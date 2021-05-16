@@ -3,12 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'boiler' do
+target 'clock3rbot' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'boilerTests' do
+  target 'clock3rbotTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -23,10 +23,10 @@ target 'boiler' do
   end
 end
 
-target 'boiler-tvOS' do
-  # Pods for boiler-tvOS
+target 'clock3rbot-tvOS' do
+  # Pods for clock3rbot-tvOS
 
-  target 'boiler-tvOSTests' do
+  target 'clock3rbot-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

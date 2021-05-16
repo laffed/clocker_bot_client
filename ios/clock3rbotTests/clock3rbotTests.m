@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface boilerTests : XCTestCase
+@interface clock3rbotTests : XCTestCase
 
 @end
 
-@implementation boilerTests
+@implementation clock3rbotTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

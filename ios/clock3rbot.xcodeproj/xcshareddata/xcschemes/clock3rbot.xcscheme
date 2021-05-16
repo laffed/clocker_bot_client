@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "boiler.app"
-               BlueprintName = "boiler"
-               ReferencedContainer = "container:boiler.xcodeproj">
+               BuildableName = "clock3rbot.app"
+               BlueprintName = "clock3rbot"
+               ReferencedContainer = "container:clock3rbot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "boilerTests.xctest"
-               BlueprintName = "boilerTests"
-               ReferencedContainer = "container:boiler.xcodeproj">
+               BuildableName = "clock3rbotTests.xctest"
+               BlueprintName = "clock3rbotTests"
+               ReferencedContainer = "container:clock3rbot.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "boiler.app"
-            BlueprintName = "boiler"
-            ReferencedContainer = "container:boiler.xcodeproj">
+            BuildableName = "clock3rbot.app"
+            BlueprintName = "clock3rbot"
+            ReferencedContainer = "container:clock3rbot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "boiler.app"
-            BlueprintName = "boiler"
-            ReferencedContainer = "container:boiler.xcodeproj">
+            BuildableName = "clock3rbot.app"
+            BlueprintName = "clock3rbot"
+            ReferencedContainer = "container:clock3rbot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

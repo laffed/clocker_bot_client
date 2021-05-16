@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.boiler"
+        applicationId "com.clock3rbot"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
