@@ -1,29 +1,34 @@
 import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, StyleSheet, Image, StatusBar, Text, TouchableOpacity, ColorSchemeName} from 'react-native';
-import {useOvermind} from '../state';
-
-export default function Navigation() {
-  const GlobalState = useOvermind().state.Clock;
-
-  return (
-    <NavigationContainer>
-      {/* Add conditional from global state to render either auth or app stack */}
-    </NavigationContainer>
-  )
-}
+import {useOvermind} from '@state';
+import {Home, Login} from '@screens';
 
 const AppStack = createStackNavigator();
 const AuthStack = createStackNavigator();
 
-// function AppNavigator() {
-//   <AppStack.Navigator>
+export default function Navigation() {
+  const {authorized} = useOvermind().state.User;
 
-//   </AppStack.Navigator>
-// }
+  return (
+    <NavigationContainer>
+      {authorized && <AppNavigator />}
+      {!authorized && <AuthNavigator />}
+    </NavigationContainer>
+  )
+}
 
-// function AuthNavigator() {
-//   <AuthStack.Navigator>
+function AppNavigator() {
+  return (
+    <AppStack.Navigator>
+      <AppStack.Screen name='Home' component={Home} />
+    </AppStack.Navigator>
+  );
+}
 
-//   </AuthStack.Navigator>
-// }
+function AuthNavigator() {
+  return (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name='Login' component={Login} />
+    </AuthStack.Navigator>
+  );
+}
