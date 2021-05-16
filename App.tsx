@@ -5,6 +5,7 @@ import {Header, LearnMoreLinks, Colors, DebugInstructions, ReloadInstructions, }
 import {Provider} from 'overmind-react';
 import {createOvermind} from 'overmind';
 import {config} from '@state';
+import {BackgroundParent} from '@components';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -15,11 +16,15 @@ const overmind = createOvermind(config, {
 const App = () => {
 
   return (
-    <View>
-      <Text>
-        Hello
-      </Text>
-    </View>
+    <Provider value={overmind}>
+      <BackgroundParent>
+        <View>
+          <Text>
+            Hello
+          </Text>
+        </View>
+      </BackgroundParent>
+    </Provider>
   );
 };
 
