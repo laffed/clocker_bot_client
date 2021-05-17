@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "753596530189",
+    "project_id": "clockerbotbackend",
+    "storage_bucket": "clockerbotbackend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753596530189:android:bf38844bc74739d8151f44",
+        "android_client_info": {
+          "package_name": "com.clock3rbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753596530189-gcbb3ilrfmm72pfmf787q0ua6usgo03g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBihZo8SzQzxejL_WJcd0ceht4GxPlBN5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753596530189-gcbb3ilrfmm72pfmf787q0ua6usgo03g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
