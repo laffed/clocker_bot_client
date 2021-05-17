@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Provider value={overmind}>
       <BackgroundParent>
-        {Navigation}
+        <Navigation />
       </BackgroundParent>
     </Provider>
   );
