@@ -102,7 +102,8 @@ export const checkStatus: AsyncAction<void, void> = async ({state}) => {
 }
 
 export const doClockEvent: AsyncAction<void, void> = async ({state}) => {
-  state.User.loadingMsg = '... Pinging Karen';
+  const message = state.User.clockStatus === 'in' ? '... Clocking out' : state.User.clockStatus === 'out' ? '... Clocking in' : '... Checking'
+  state.User.loadingMsg = message;
   state.User.loading = true;
   const local = await getAsyncStorage();
   const res = await axios({
