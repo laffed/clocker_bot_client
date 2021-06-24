@@ -1,14 +1,17 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, Image, useWindowDimensions, TextInput, Button} from 'react-native';
+import {View, Text, StyleSheet, Image, useWindowDimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
 import {useOvermind} from '@state';
+import {Loading} from '@screens';
 import {ENV} from '../env';
-import robot from '../assets/robot.png';
+import robot from '../assets/robot_bw.png';
 import {useForm, Controller, SubmitHandler} from "react-hook-form";
 import {LoginFormValues} from '../types';
 import {loginResolver} from '../formValidation';
 
 function Login() {
-  const {loginFirebase} = useOvermind().actions.User;
+  const {login} = useOvermind().actions.User;
+  const {loading} = useOvermind().state.User;
   const [error, setError] = useState('');
   const {
     control,
@@ -18,107 +21,134 @@ function Login() {
   const {width} = useWindowDimensions();
 
   const onLogin: SubmitHandler<LoginFormValues> = async (data) => {
-    let res = await loginFirebase({email: data.email, pw: data.password});
+    let res = await login({user: data.email, pw: data.password});
     if (res === false) {
-      setError('Wrong credentials');
+      setError('Oops! Prolly need to update your cnc pw');
     }
   }
 
   return (
-    <View style={styles.container}>
-      <View style={{flex: 1}}>
-        <Image
-          source={robot}
-          style={[styles.image, {width, resizeMode: 'contain'}]}
-        />
-      </View>
-      <Text>{error}</Text>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-        <Controller
-          control={control}
-          name="email"
-          defaultValue=""
-          render={({
-            field: {onChange, onBlur, value, name},
-            fieldState: {invalid, isTouched, isDirty, error},
-            formState
-          }) => (
-            <TextInput
-              style={styles.inputBox}
-              placeholder={"Enter your email address"}
-              keyboardType="email-address"
-              returnKeyType="next"
-              onBlur={onBlur}
-              onChangeText={(value) => onChange(value)}
-              value={value}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="password"
-          defaultValue=""
-          render={({
-            field: {onChange, onBlur, value, name},
-            fieldState: {invalid, isTouched, isDirty, error},
-            formState
-          }) => (
-            <TextInput
-              secureTextEntry={true}
-              style={styles.inputBox}
-              placeholder={"Enter your password"}
-              keyboardType="default"
-              returnKeyType="send"
-              onBlur={onBlur}
-              onChangeText={(value) => onChange(value)}
-              value={value}
-            />
-          )}
-        />
-        <Button
-          title="SIGN IN"
-          onPress={handleSubmit(onLogin)}
-        />
-      </View>
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={[styles.container, {width}]}
+    >
+      {loading && <Loading />}
+      {!loading && (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <View style={styles.img_container}>
+              <Image
+                source={robot}
+                style={[styles.image]}
+              />
+
+            </View>
+            <Text>{error}</Text>
+            <View style={styles.formContainer}>
+              <Controller
+                control={control}
+                name="email"
+                defaultValue=""
+                render={({
+                  field: {onChange, onBlur, value, name},
+                  fieldState: {invalid, isTouched, isDirty, error},
+                  formState
+                }) => (
+                  <TextInput
+                    mode='outlined'
+                    style={styles.inputBox}
+                    label='username'
+                    placeholder={"username"}
+                    keyboardType="email-address"
+                    returnKeyType="next"
+                    onBlur={onBlur}
+                    onChangeText={(value) => onChange(value)}
+                    value={value}
+                  />
+                )}
+              />
+              <Controller
+                control={control}
+                name="password"
+                defaultValue=""
+                render={({
+                  field: {onChange, onBlur, value, name},
+                  fieldState: {invalid, isTouched, isDirty, error},
+                  formState
+                }) => (
+                  <TextInput
+                    mode='outlined'
+                    secureTextEntry={true}
+                    style={styles.inputBox}
+                    label='password'
+                    placeholder={"password"}
+                    keyboardType="default"
+                    returnKeyType="send"
+                    onBlur={onBlur}
+                    onChangeText={(value) => onChange(value)}
+                    value={value}
+                  />
+                )}
+              />
+            </View>
+            <Button
+              onPress={handleSubmit(onLogin)}
+              mode='contained'
+              color="#fff"
+              style={styles.buttonContainer}
+            >
+              SIGN IN
+            </Button>
+          </View>
+        </TouchableWithoutFeedback>
+      )}
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10
-  },
-  image: {
-    marginTop: 60,
-    flex: 0.5,
+    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff'
+  },
+  inner: {
+    width: '100%',
+    height: '100%',
+    marginTop: 40,
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
+  img_container: {
+    flex: .3,
+    margin: 7,
+    justifyContent: 'flex-end'
+  },
+  image: {
+    height: '70%',
+    resizeMode: 'contain'
+  },
+  formContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
+  },
   inputBox: {
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 15,
-    paddingBottom: 15,
-    width: 200,
+    width: '70%',
     textAlign: "left",
-    borderBottomColor: "grey",
-    borderBottomWidth: 1,
+    margin: 7
   },
-  containerButton: {
-    marginTop: 20,
-    marginLeft: 0,
-    width: "100%",
+  buttonContainer: {
+    borderColor: '#fff',
+    width: '45%',
+    margin: 20
   },
-  buttonStyle: {
-    height: 50,
+  button: {
+    fontWeight: 'bold',
   },
   loginButton: {
     width: 250,
-    height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 40,
