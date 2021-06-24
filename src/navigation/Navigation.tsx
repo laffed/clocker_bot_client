@@ -20,7 +20,7 @@ export default function Navigation() {
 
 function AppNavigator() {
   return (
-    <AppStack.Navigator>
+    <AppStack.Navigator headerMode={'none'}>
       <AppStack.Screen name='Home' component={Home} />
     </AppStack.Navigator>
   );

@@ -33,15 +33,15 @@ function Home() {
     return (
         <View style={styles.container}>
             {loading && <ActivityIndicator size='large' />}
-            <Text>
-                {clockStatus ? 'Currently Clocked In' : 'Currently Clocked Out'}
+            <Text style={styles.status}>
+                {loading ? '' : clockStatus ? 'Currently Clocked In' : 'Currently Clocked Out'}
             </Text>
             <Button
-                title="STATUS"
+                title="CHECK STATUS"
                 onPress={onCheck}
             />
             <Button
-                title="CLOCK ME"
+                title={clockStatus ? "CLOCK OUT" : "CLOCK IN"}
                 onPress={onLogin}
             />
 
@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: 'center'
     },
+    status: {
+        fontSize: 30,
+        marginBottom: 20
+    }
 });
 
 export default Home;
