@@ -10,16 +10,19 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.6.0",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^11.5.0",
     "@react-native-firebase/auth": "^11.5.0",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
+    "axios": "^0.21.1",
     "formik": "^2.2.6",
     "overmind": "^27.0.0",
     "overmind-react": "^28.0.0",
     "react": "16.13.1",
+    "react-hook-form": "^7.9.0",
     "react-native": "0.63.4",
     "react-native-elements": "^3.2.0",
     "react-native-gesture-handler": "^1.10.0",
@@ -27,7 +30,7 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.17.1",
-    "yup": "^0.32.8"
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

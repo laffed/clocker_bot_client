@@ -1,7 +1,9 @@
 type UserState = {
   authorized: boolean;
+  clockStatus: boolean;
 }
 
 export const state: UserState = {
-  authorized: false
+  authorized: false,
+  clockStatus: false
 }

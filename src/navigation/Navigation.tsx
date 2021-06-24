@@ -28,8 +28,8 @@ function AppNavigator() {
 
 function AuthNavigator() {
   return (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator headerMode={'none'}>
       <AuthStack.Screen name='Login' component={Login} />
-    </AuthStack.Navigator>
+    </AuthStack.Navigator >
   );
 }

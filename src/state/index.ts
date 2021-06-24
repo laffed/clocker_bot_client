@@ -1,11 +1,9 @@
 import {IConfig, IOnInitialize, IAction, IOperator} from 'overmind';
 import {createHook} from 'overmind-react';
 import {namespaced} from 'overmind/config';
-import * as Clock from './clock';
 import * as User from './user';
 
 export const config = namespaced({
-  Clock,
   User
 });
 
