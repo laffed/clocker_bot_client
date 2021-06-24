@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, Image, useWindowDimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useOvermind} from '@state';
@@ -10,7 +10,7 @@ import {LoginFormValues} from '../types';
 import {loginResolver} from '../formValidation';
 
 function Login() {
-  const {login} = useOvermind().actions.User;
+  const {login, checkLocalLogin} = useOvermind().actions.User;
   const {loading} = useOvermind().state.User;
   const [error, setError] = useState('');
   const {
@@ -21,11 +21,15 @@ function Login() {
   const {width} = useWindowDimensions();
 
   const onLogin: SubmitHandler<LoginFormValues> = async (data) => {
-    let res = await login({user: data.email, pw: data.password});
+    let res = await login({user: data.username, pw: data.password});
     if (res === false) {
       setError('Oops! Prolly need to update your cnc pw');
     }
   }
+
+  useEffect(() => {
+    checkLocalLogin();
+  }, [])
 
   return (
     <KeyboardAvoidingView
@@ -47,7 +51,7 @@ function Login() {
             <View style={styles.formContainer}>
               <Controller
                 control={control}
-                name="email"
+                name="username"
                 defaultValue=""
                 render={({
                   field: {onChange, onBlur, value, name},
@@ -59,7 +63,7 @@ function Login() {
                     style={styles.inputBox}
                     label='username'
                     placeholder={"username"}
-                    keyboardType="email-address"
+                    keyboardType="default"
                     returnKeyType="next"
                     onBlur={onBlur}
                     onChangeText={(value) => onChange(value)}

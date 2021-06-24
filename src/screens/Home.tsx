@@ -5,10 +5,9 @@ import {Button} from 'react-native-paper';
 import {useOvermind} from '@state';
 import {Loading} from '@screens';
 
-//TODO implement logout
 function Home() {
     const {clockStatus, loading} = useOvermind().state.User;
-    const {checkStatus, doClockEvent} = useOvermind().actions.User;
+    const {checkStatus, doClockEvent, logout} = useOvermind().actions.User;
 
     const onCheck = async () => {
         await checkStatus();
@@ -62,6 +61,12 @@ function Home() {
                                 {clockStatus === 'in' ? "CLOCK OUT" : "CLOCK IN"}
                             </Button>
                         }
+                        <Button
+                            style={styles.button}
+                            onPress={() => logout()}
+                        >
+                            Exit
+                        </Button>
                     </View>
                 </>
             )}
@@ -87,6 +92,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: '65%',
+        margin: 10
     },
     status: {
         fontSize: 30,

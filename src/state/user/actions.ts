@@ -87,6 +87,7 @@ export const checkStatus: AsyncAction<void, void> = async ({state}) => {
     method: 'POST',
     url: ENV.karen_routes.status,
     data: {
+      apiKey: ENV.karen_api_key,
       user: local.user,
       pw: local.pw
     }
@@ -108,6 +109,7 @@ export const doClockEvent: AsyncAction<void, void> = async ({state}) => {
     method: 'POST',
     url: ENV.karen_routes.clocker,
     data: {
+      apiKey: ENV.karen_api_key,
       user: local.user,
       pw: local.pw
     }
