@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
         flex: 1,
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: 'center',
-        padding: 20
+        padding: 10
 
     },
     icon: {
-        margin: 40
+        margin: 20
     },
     bottom: {
         alignItems: 'center',
@@ -95,7 +95,8 @@ const styles = StyleSheet.create({
         margin: 10
     },
     status: {
-        fontSize: 30,
+        textAlign: 'center',
+        fontSize: 27,
         marginBottom: 30
     }
 });
