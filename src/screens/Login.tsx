@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, StyleSheet, Image, useWindowDimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View, Text, StyleSheet, Image, useWindowDimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Linking, Alert} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useOvermind} from '@state';
 import {Loading} from '@screens';
-import {ENV} from '../env';
 import robot from '../assets/robot_bw.png';
 import {useForm, Controller, SubmitHandler} from "react-hook-form";
 import {LoginFormValues} from '../types';
@@ -19,6 +18,22 @@ function Login() {
     formState: {errors},
   } = useForm<LoginFormValues>({resolver: loginResolver});
   const {width} = useWindowDimensions();
+
+  const speakToManager = async () => {
+    Alert.alert("Really?", '..smh',
+      [
+        {
+          text: 'Yes, really',
+          onPress: async () => await Linking.openURL('tel:15702073355')
+        },
+        {
+          text: "Nevermind",
+          onPress: () => { },
+          style: 'cancel'
+        }
+      ])
+
+  }
 
   const onLogin: SubmitHandler<LoginFormValues> = async (data) => {
     let res = await login({user: data.username, pw: data.password});
@@ -103,9 +118,17 @@ function Login() {
             >
               SIGN IN
             </Button>
+            <Button
+              mode="text"
+              onPress={() => speakToManager()}
+              style={styles.phone}
+            >
+              <Text style={{fontSize: 8}}>I'd like to speak to a manager</Text>
+            </Button>
           </View>
         </TouchableWithoutFeedback>
       )}
+
     </KeyboardAvoidingView>
   );
 }
@@ -125,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   img_container: {
-    flex: .3,
+    flex: .5,
     margin: 7,
     justifyContent: 'flex-end'
   },
@@ -150,6 +173,11 @@ const styles = StyleSheet.create({
   },
   button: {
     fontWeight: 'bold',
+  },
+  phone: {
+    position: 'absolute',
+    bottom: 50,
+    opacity: 0.9,
   },
   loginButton: {
     width: 250,
